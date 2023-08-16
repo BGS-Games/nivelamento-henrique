@@ -29,7 +29,11 @@ namespace DamageSystem.Tests
             character.Equipment = 0;
 
             Assert.That(character.Equipment, Is.EqualTo(0));
-
         }
+
+        //public void Given_Damage_Should_Print_Characters_Health()
+        //{
+
+        //}
     }
 }

@@ -13,10 +13,16 @@ namespace DamageSystem
             return character.Defense + character.Equipment;
         }
 
-        public void ExecuteDamage(Character attacker, Character defender)
+        public string ExecuteDamage(Character attacker, Character defender)
         {
-            var damage = attacker.Attack * ( 1 - CalculateDamageReduction(defender)/100f);
+            var reduction = CalculateDamageReduction(attacker);
+            var damage = attacker.Attack * ( 1 - reduction/100f);
             defender.TakeDamage((int) damage);
+
+            //var attackInfo = string.Format("Personagem sofreu ${0} de dano. (redução de {1}%)", (int)damage, reduction);
+            var attackInfo = $"Personagem sofreu {(int)damage} de dano. (redução de {reduction}%)";
+
+            return attackInfo;
         }
     }
 }
