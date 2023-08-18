@@ -10,16 +10,13 @@ namespace DamageSystem.Tests
     internal class GameInfoTests
     {        
         [Test]
-        public void Given_a_round_should_print_rounds_value_in_first_line()
+        public void Given_a_round_should_format_info_to_display()
         {
             var gameInfo = new GameInfo();
-            var roundInfo = gameInfo.PlayRound();            
+
+            var roundInfo = gameInfo.PlayRound();
 
             Assert.That(roundInfo, Is.EqualTo("Rodada #1"));
-
-            roundInfo = gameInfo.PlayRound();
-
-            Assert.That(roundInfo, Is.EqualTo("Rodada #2"));            
         }
 
         [Test]

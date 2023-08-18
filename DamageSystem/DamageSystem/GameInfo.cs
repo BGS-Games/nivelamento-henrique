@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace DamageSystem
 {
-    //talvez GamePlay teria sido um nome melhor
+    //TODO: talvez GamePlay teria sido um nome melhor    
     public class GameInfo
     {
         public Character attacker = new Character (new CharacterAttributes("Dumbledor",100,30,10)); 
@@ -16,7 +16,6 @@ namespace DamageSystem
             numberRound++;
             
             var roundInfo = "Rodada #" + numberRound;
-            Console.WriteLine("\n"+roundInfo);
 
             damageSystem.ExecuteDamage(attacker, defender);     
             
