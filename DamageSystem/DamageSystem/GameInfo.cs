@@ -3,9 +3,10 @@ using System.Diagnostics;
 
 namespace DamageSystem
 {
-    //TODO: talvez GamePlay teria sido um nome melhor    
+    //TODO: Bruno - implementar a criação do game informa como um builder
     public class GameInfo
     {
+        // TODO: essas iniicializações devem ser feitas no Program
         public Character attacker = new Character (new CharacterAttributes("Dumbledor",100,30,10)); 
         public Character defender = new Character (new CharacterAttributes("Voldermort",100, 30, 10)); 
         public DamageSystem damageSystem = new DamageSystem();
