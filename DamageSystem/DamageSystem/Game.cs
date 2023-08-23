@@ -22,10 +22,10 @@
             {
                 PlayRound(gameObjects);
 
-                display.WriteLine(gameInfo.roundInfo);
-                display.WriteLine(gameInfo.attackInfo);
-                display.WriteLine(gameInfo.defenseInfo);
-                display.WriteLine(gameInfo.defenderLifeStatus);
+                display.WriteLine(gameInfo.RoundInfo);
+                display.WriteLine(gameInfo.AttackInfo);
+                display.WriteLine(gameInfo.DefenseInfo);
+                display.WriteLine(gameInfo.DefenderLifeStatus);
             }
         }
 
@@ -34,7 +34,7 @@
             gameObjects.UpdateNumberRound();
             gameObjects.damageSystem.ExecuteDamage(gameObjects.attacker, gameObjects.defender);
             
-            gameInfo.AllInfoRoundUpdate(gameObjects);
+            gameInfo.UpdateAllInfoRound(gameObjects);
         }
 
     }

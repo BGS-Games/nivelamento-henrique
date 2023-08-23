@@ -7,13 +7,17 @@ namespace DamageSystem
     //TODO: Bruno - implementar a criação do game informa como um builder
     public class GameInfo
     {
-        public string roundInfo = "Rodada 0";
-        public string attackInfo = "No Attack";
-        public string defenseInfo = "No Defense";
-        public string defenderLifeStatus = "Defender is still Alive";
+        private string roundInfo = "Rodada 0";
+        private string attackInfo = "No Attack";
+        private string defenseInfo = "No Defense";
+        private string defenderLifeStatus = "Defender is still Alive";
 
+        public string RoundInfo { get => roundInfo; private set => roundInfo = value; }
+        public string AttackInfo { get => attackInfo; private set => attackInfo = value; }
+        public string DefenseInfo { get => defenseInfo; private set => defenseInfo = value; }
+        public string DefenderLifeStatus { get => defenderLifeStatus; private set => defenderLifeStatus = value; }
 
-        public void AllInfoRoundUpdate(GameObjects gameObjects)
+        public void UpdateAllInfoRound(GameObjects gameObjects)
         {
             RoundInfoUpdate(gameObjects);
             AttackInfoUpdate(gameObjects);
@@ -23,12 +27,12 @@ namespace DamageSystem
 
         public void RoundInfoUpdate(GameObjects gameObjects)
         {   
-            roundInfo = "Rodada #" + gameObjects.numberRound;           
+            RoundInfo = "Rodada #" + gameObjects.numberRound;           
         }        
 
         public void AttackInfoUpdate(GameObjects gameObjects) 
         {
-            attackInfo = gameObjects.attacker.Name + " ataca";
+            AttackInfo = gameObjects.attacker.Name + " ataca";
         }
 
         public void DefenseInfoUpdate(GameObjects gameObjects)
@@ -47,11 +51,11 @@ namespace DamageSystem
 
             if( health < 0)
             {
-                defenderLifeStatus = name + " morreu.";
+                DefenderLifeStatus = name + " morreu.";
             }
             else
             {
-                defenderLifeStatus = name + " tem uma vida restante de " + health;
+                DefenderLifeStatus = name + " tem uma vida restante de " + health;
             }
         }
 

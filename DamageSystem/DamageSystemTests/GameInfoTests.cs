@@ -17,12 +17,12 @@ namespace DamageSystem.Tests
             GameObjects gameObjects = new GameObjects("Skywalker", "Darth Vader");
             
             game.PlayRound(gameObjects);
-            var roundInfo = game.gameInfo.roundInfo; 
+            var roundInfo = game.gameInfo.RoundInfo; 
 
             Assert.That(roundInfo, Is.EqualTo("Rodada #1"));
 
             game.PlayRound(gameObjects);
-            roundInfo = game.gameInfo.roundInfo;
+            roundInfo = game.gameInfo.RoundInfo;
 
             Assert.That(roundInfo, Is.EqualTo("Rodada #2"));
         }
