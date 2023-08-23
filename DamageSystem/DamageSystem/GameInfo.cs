@@ -1,34 +1,59 @@
 ﻿
 using System.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DamageSystem
 {
     //TODO: Bruno - implementar a criação do game informa como um builder
     public class GameInfo
     {
-        // TODO: essas iniicializações devem ser feitas no Program
-        public Character attacker = new Character (new CharacterAttributes("Dumbledor",100,30,10)); 
-        public Character defender = new Character (new CharacterAttributes("Voldermort",100, 30, 10)); 
-        public DamageSystem damageSystem = new DamageSystem();
-        public int numberRound = 0;
+        public string roundInfo = "Rodada 0";
+        public string attackInfo = "No Attack";
+        public string defenseInfo = "No Defense";
+        public string defenderLifeStatus = "Defender is still Alive";
 
-        public string PlayRound()
+
+        public void AllInfoRoundUpdate(GameObjects gameObjects)
         {
-            numberRound++;
-            
-            var roundInfo = "Rodada #" + numberRound;
-
-            damageSystem.ExecuteDamage(attacker, defender);     
-            
-            return roundInfo;
+            RoundInfoUpdate(gameObjects);
+            AttackInfoUpdate(gameObjects);
+            DefenseInfoUpdate(gameObjects);
+            DeffendersLifeUpdate(gameObjects);
         }
 
-        public void StartGame()
+        public void RoundInfoUpdate(GameObjects gameObjects)
+        {   
+            roundInfo = "Rodada #" + gameObjects.numberRound;           
+        }        
+
+        public void AttackInfoUpdate(GameObjects gameObjects) 
         {
-            while (defender.Health > 0)
+            attackInfo = gameObjects.attacker.Name + " ataca";
+        }
+
+        public void DefenseInfoUpdate(GameObjects gameObjects)
+        {
+            var name = gameObjects.defender.Name;
+            var damage = gameObjects.defender.lastDefense.LastDamage;
+            var reduction = gameObjects.defender.lastDefense.LastReduction;
+
+            defenseInfo = $"{name} sofreu {damage} de dano. (redução de {reduction}%)";
+        }
+
+        public void DeffendersLifeUpdate(GameObjects gameObjects)
+        {
+            var health = gameObjects.defender.Health;
+            var name = gameObjects.defender.Name;
+
+            if( health < 0)
             {
-                PlayRound();
+                defenderLifeStatus = name + " morreu.";
+            }
+            else
+            {
+                defenderLifeStatus = name + " tem uma vida restante de " + health;
             }
         }
+
     }
 }

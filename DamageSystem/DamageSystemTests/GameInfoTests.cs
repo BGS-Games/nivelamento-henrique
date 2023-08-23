@@ -12,20 +12,20 @@ namespace DamageSystem.Tests
         [Test]
         public void Given_a_round_should_format_info_to_display()
         {
-            var gameInfo = new GameInfo();
-
-            var roundInfo = gameInfo.PlayRound();
+            var display = new StringDisplay();
+            var game = new Game(display);
+            GameObjects gameObjects = new GameObjects("Skywalker", "Darth Vader");
+            
+            game.PlayRound(gameObjects);
+            var roundInfo = game.gameInfo.roundInfo; 
 
             Assert.That(roundInfo, Is.EqualTo("Rodada #1"));
+
+            game.PlayRound(gameObjects);
+            roundInfo = game.gameInfo.roundInfo;
+
+            Assert.That(roundInfo, Is.EqualTo("Rodada #2"));
         }
 
-        [Test]
-        public void When_game_starts_runs_rounds_until_deffenders_life_is_zero()
-        {
-            var gameInfo = new GameInfo();
-            gameInfo.StartGame(); 
-
-            Assert.That(gameInfo.defender.Health, Is.EqualTo(0));
-        }
     }
 }

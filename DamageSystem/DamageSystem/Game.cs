@@ -3,7 +3,7 @@
     public class Game
     {
         private readonly IDisplay display;
-        private readonly GameInfo gameInfo;
+        public readonly GameInfo gameInfo;
 
         public Game(IDisplay display)
         {
@@ -11,9 +11,31 @@
             gameInfo = new GameInfo();
         }
 
-        public void Start()
+        public void Start(GameObjects gameObjects)
         {
-            display.WriteLine(gameInfo.PlayRound());
+            PlayWholeGame(gameObjects);            
         }
+
+        public void PlayWholeGame(GameObjects gameObjects)
+        {
+            while(gameObjects.defender.Health > 0)
+            {
+                PlayRound(gameObjects);
+
+                display.WriteLine(gameInfo.roundInfo);
+                display.WriteLine(gameInfo.attackInfo);
+                display.WriteLine(gameInfo.defenseInfo);
+                display.WriteLine(gameInfo.defenderLifeStatus);
+            }
+        }
+
+        public void PlayRound(GameObjects gameObjects) 
+        {
+            gameObjects.UpdateNumberRound();
+            gameObjects.damageSystem.ExecuteDamage(gameObjects.attacker, gameObjects.defender);
+            
+            gameInfo.AllInfoRoundUpdate(gameObjects);
+        }
+
     }
 }

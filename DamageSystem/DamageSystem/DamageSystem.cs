@@ -16,17 +16,12 @@ namespace DamageSystem
         }
 
         public void ExecuteDamage(Character attacker, Character defender)
-        {
-            //TODO: remover os console.writeline das áreas de lógica
-            Console.WriteLine(attacker.Name + " ataca");
+        {           
+            var reduction = CalculateDamageReduction(attacker);          
 
-            var reduction = CalculateDamageReduction(attacker);           
-            
             var damage = attacker.Attack * ( 1 - reduction/100f);
             
-            defender.TakeDamage((int) damage);
-            
-            Console.WriteLine($"{defender.Name} sofreu {(int)damage} de dano. (redução de {reduction}%)");     
+            defender.TakeDamage((int) damage, reduction);                    
         }
     }
 }

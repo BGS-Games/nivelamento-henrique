@@ -10,6 +10,26 @@
         public int Equipment { get; set; }
         public int Attack { get; }
 
+        public DefenseInfo lastDefense { get; set; }
+
+        public class DefenseInfo 
+        {
+            public int LastDamage { get; set; }
+            public float LastReduction { get; set; }
+
+            public DefenseInfo ()
+            {
+                LastDamage = 0;
+                LastReduction = 0;
+            }
+
+            public void UpdateInfo(int lastDamage, float lastReduction)
+            {
+                LastDamage = lastDamage;
+                LastReduction = lastReduction;
+            }
+        }
+
         public Character(CharacterAttributes attributes)
         {
             if(attributes.Health == 0) 
@@ -18,24 +38,18 @@
             Name = attributes.Name;
             Health = attributes.Health;
             Defense = attributes.Defense;
-            Attack = attributes.Attack; 
+            Attack = attributes.Attack;
+            lastDefense = new DefenseInfo();
         }
 
-        internal void TakeDamage(int damage)
+        internal void TakeDamage(int damage, float reduction)
         {
             Health -= damage;
 
-            if (Health < 0) 
-            { 
-                Health = 0;
-                Console.WriteLine(Name + " morreu.");
-            }
+            if (Health < 0) { Health = 0; }
 
-            else
-            {
-                Console.WriteLine(Name + " tem uma vida restante de " + Health);
-            }
-            
+            lastDefense.UpdateInfo(damage, reduction);      
         }
+
     }
 }
