@@ -2,9 +2,7 @@
 
 namespace DamageSystem.DamageSystem
 {
-
-    // TODO: pode ser abstraído como uma interface, criar uma outra implementação
-    public class SimpleDamageSystem
+    public class SimpleDamageSystem : IDamageSystem
     {
         public int CalculateDamageReduction(CharacterController character)
         {

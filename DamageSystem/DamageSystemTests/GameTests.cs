@@ -1,4 +1,5 @@
-﻿using DamageSystem.Display;
+﻿using DamageSystem.DamageSystem;
+using DamageSystem.Display;
 using DamageSystem.Game;
 using NUnit.Framework;
 
@@ -11,7 +12,7 @@ namespace DamageSystem.Tests
         {
             var display = new StringDisplay();
             var game = new GameController(display);
-            GameInitializer gameObjects = new GameInitializer("Skywalker", "Darth Vader");
+            GameInitializer gameObjects = new GameInitializer("Skywalker", "Darth Vader", new SimpleDamageSystem());
 
             game.Start(gameObjects);
 
@@ -23,7 +24,7 @@ namespace DamageSystem.Tests
         {
             var display = new StringDisplay();
             var game = new GameController(display);
-            GameInitializer gameObjects = new GameInitializer("Skywalker", "Darth Vader");
+            GameInitializer gameObjects = new GameInitializer("Skywalker", "Darth Vader", new SimpleDamageSystem());
             
             game.Start(gameObjects);
 

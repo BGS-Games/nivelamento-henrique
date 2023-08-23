@@ -5,12 +5,10 @@ namespace DamageSystem.Game
     public class GameController
     {
         private readonly IDisplay display;
-        public readonly GameInfo gameInfo;
 
         public GameController(IDisplay display)
         {
             this.display = display;
-            gameInfo = new GameInfo();
         }
 
         public void Start(GameInitializer gameObjects)
@@ -24,6 +22,12 @@ namespace DamageSystem.Game
             {
                 PlayRound(gameObjects);
 
+                var gameInfo = new GameInfoDataBuilder()
+                    .WithRound(gameObjects.numberRound)
+                    .WithAttacker(gameObjects.attacker)
+                    .WithDefender(gameObjects.defender)
+                    .Build();
+
                 display.WriteLine(gameInfo.RoundInfo);
                 display.WriteLine(gameInfo.AttackInfo);
                 display.WriteLine(gameInfo.DefenseInfo);
@@ -35,9 +39,6 @@ namespace DamageSystem.Game
         {
             gameObjects.UpdateNumberRound();
             gameObjects.damageSystem.ExecuteDamage(gameObjects.attacker, gameObjects.defender);
-
-            gameInfo.UpdateAllInfoRound(gameObjects);
         }
-
     }
 }
