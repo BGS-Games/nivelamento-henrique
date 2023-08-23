@@ -1,4 +1,4 @@
-﻿namespace DamageSystem
+﻿namespace DamageSystem.Character
 {
     public struct CharacterAttributes
     {
@@ -12,7 +12,7 @@
 
         public string Name { get; }
         public int Health { get; }
-        public int Defense { get; }        
+        public int Defense { get; }
         public int Attack { get; }
     }
 }

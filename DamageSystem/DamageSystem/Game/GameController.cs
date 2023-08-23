@@ -1,22 +1,24 @@
-﻿namespace DamageSystem
+﻿using DamageSystem.Display;
+
+namespace DamageSystem.Game
 {
-    public class Game
+    public class GameController
     {
         private readonly IDisplay display;
         public readonly GameInfo gameInfo;
 
-        public Game(IDisplay display)
+        public GameController(IDisplay display)
         {
             this.display = display;
             gameInfo = new GameInfo();
         }
 
-        public void Start(GameObjects gameObjects)
+        public void Start(GameInitializer gameObjects)
         {
-            PlayWholeGame(gameObjects);            
+            PlayWholeGame(gameObjects);
         }
 
-        public void PlayWholeGame(GameObjects gameObjects)
+        public void PlayWholeGame(GameInitializer gameObjects)
         {
             while(gameObjects.defender.Health > 0)
             {
@@ -29,11 +31,11 @@
             }
         }
 
-        public void PlayRound(GameObjects gameObjects) 
+        public void PlayRound(GameInitializer gameObjects)
         {
             gameObjects.UpdateNumberRound();
             gameObjects.damageSystem.ExecuteDamage(gameObjects.attacker, gameObjects.defender);
-            
+
             gameInfo.UpdateAllInfoRound(gameObjects);
         }
 

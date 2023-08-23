@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using DamageSystem.DamageSystem;
+using NUnit.Framework;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace DamageSystem.Tests
@@ -8,7 +9,7 @@ namespace DamageSystem.Tests
         [Test]
         public void Given_character_should_calculate_damage_reduction()
         {
-            var damageSystem = new DamageSystem();
+            var damageSystem = new SimpleDamageSystem();
             var character = CharacterMockBuilder.Simple();
             character.Equipment = 15;
             
@@ -20,7 +21,7 @@ namespace DamageSystem.Tests
         [Test]
         public void Given_attack_should_execute_damage()
         {
-            var damageSystem = new DamageSystem();            
+            var damageSystem = new SimpleDamageSystem();            
             var attacker = CharacterMockBuilder.Simple();
             var defender = CharacterMockBuilder.Simple();
 

@@ -1,8 +1,7 @@
-﻿
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace DamageSystem
+namespace DamageSystem.Game
 {
     //TODO: Bruno - implementar a criação do game informa como um builder
     public class GameInfo
@@ -17,7 +16,7 @@ namespace DamageSystem
         public string DefenseInfo { get => defenseInfo; private set => defenseInfo = value; }
         public string DefenderLifeStatus { get => defenderLifeStatus; private set => defenderLifeStatus = value; }
 
-        public void UpdateAllInfoRound(GameObjects gameObjects)
+        public void UpdateAllInfoRound(GameInitializer gameObjects)
         {
             RoundInfoUpdate(gameObjects);
             AttackInfoUpdate(gameObjects);
@@ -25,17 +24,17 @@ namespace DamageSystem
             DeffendersLifeUpdate(gameObjects);
         }
 
-        public void RoundInfoUpdate(GameObjects gameObjects)
-        {   
-            RoundInfo = "Rodada #" + gameObjects.numberRound;           
-        }        
+        public void RoundInfoUpdate(GameInitializer gameObjects)
+        {
+            RoundInfo = "Rodada #" + gameObjects.numberRound;
+        }
 
-        public void AttackInfoUpdate(GameObjects gameObjects) 
+        public void AttackInfoUpdate(GameInitializer gameObjects)
         {
             AttackInfo = gameObjects.attacker.Name + " ataca";
         }
 
-        public void DefenseInfoUpdate(GameObjects gameObjects)
+        public void DefenseInfoUpdate(GameInitializer gameObjects)
         {
             var name = gameObjects.defender.Name;
             var damage = gameObjects.defender.lastDefense.LastDamage;
@@ -44,12 +43,12 @@ namespace DamageSystem
             defenseInfo = $"{name} sofreu {damage} de dano. (redução de {reduction}%)";
         }
 
-        public void DeffendersLifeUpdate(GameObjects gameObjects)
+        public void DeffendersLifeUpdate(GameInitializer gameObjects)
         {
             var health = gameObjects.defender.Health;
             var name = gameObjects.defender.Name;
 
-            if( health < 0)
+            if(health < 0)
             {
                 DefenderLifeStatus = name + " morreu.";
             }

@@ -1,7 +1,7 @@
-﻿namespace DamageSystem
+﻿namespace DamageSystem.Character
 {
 
-    public class Character
+    public class CharacterController
     {
         public string Name { get; }
         public int Defense { get; }
@@ -12,12 +12,12 @@
 
         public DefenseInfo lastDefense { get; set; }
 
-        public class DefenseInfo 
+        public class DefenseInfo
         {
             public int LastDamage { get; set; }
             public float LastReduction { get; set; }
 
-            public DefenseInfo ()
+            public DefenseInfo()
             {
                 LastDamage = 0;
                 LastReduction = 0;
@@ -30,9 +30,9 @@
             }
         }
 
-        public Character(CharacterAttributes attributes)
+        public CharacterController(CharacterAttributes attributes)
         {
-            if(attributes.Health == 0) 
+            if(attributes.Health == 0)
                 throw new ArgumentException("Health should be greater than 0.");
 
             Name = attributes.Name;
@@ -46,9 +46,9 @@
         {
             Health -= damage;
 
-            if (Health < 0) { Health = 0; }
+            if(Health < 0) { Health = 0; }
 
-            lastDefense.UpdateInfo(damage, reduction);      
+            lastDefense.UpdateInfo(damage, reduction);
         }
 
     }

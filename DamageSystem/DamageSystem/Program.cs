@@ -1,8 +1,9 @@
-﻿using DamageSystem;
+﻿using DamageSystem.Display;
+using DamageSystem.Game;
 
 var consoleDisplay = new ConsoleDisplay();
-var game = new Game(consoleDisplay);
+var game = new GameController(consoleDisplay);
 
-GameObjects gameObjects = new GameObjects("Dumbledore", "Voldemort");
+GameInitializer gameObjects = new GameInitializer("Dumbledore", "Voldemort");
 
 game.Start(gameObjects);

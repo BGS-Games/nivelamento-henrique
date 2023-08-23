@@ -1,4 +1,4 @@
-﻿namespace DamageSystem
+﻿namespace DamageSystem.Display
 {
     public class ConsoleDisplay : IDisplay
     {

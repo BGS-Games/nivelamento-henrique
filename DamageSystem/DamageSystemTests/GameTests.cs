@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using DamageSystem.Display;
+using DamageSystem.Game;
+using NUnit.Framework;
 
 namespace DamageSystem.Tests
 {
@@ -8,8 +10,8 @@ namespace DamageSystem.Tests
         public void Should_display_game_information()
         {
             var display = new StringDisplay();
-            var game = new Game(display);
-            GameObjects gameObjects = new GameObjects("Skywalker", "Darth Vader");
+            var game = new GameController(display);
+            GameInitializer gameObjects = new GameInitializer("Skywalker", "Darth Vader");
 
             game.Start(gameObjects);
 
@@ -20,8 +22,8 @@ namespace DamageSystem.Tests
         public void When_game_starts_runs_rounds_until_deffenders_life_is_zero()
         {
             var display = new StringDisplay();
-            var game = new Game(display);
-            GameObjects gameObjects = new GameObjects("Skywalker", "Darth Vader");
+            var game = new GameController(display);
+            GameInitializer gameObjects = new GameInitializer("Skywalker", "Darth Vader");
             
             game.Start(gameObjects);
 
