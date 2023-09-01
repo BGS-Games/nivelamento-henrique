@@ -5,7 +5,7 @@ namespace Desafio3.Testes
     public class EnemySubscriptionManagerTests
     {
         [Test]
-        public void Given_item_collected_enemy_should_change_speed()
+        public void Given_item_collected_enemy_subscripted_should_change_speed()
         {
             EnemySubscriptionManager enemySubscriptionManager = new();
             Enemy enemy = new(0);
@@ -21,9 +21,5 @@ namespace Desafio3.Testes
 
             Assert.That(enemy.Speed, Is.EqualTo(2f));
         }
-
-        //Given_IEnemyUpdater_subscription_should_add_into_updater_list
-        //Given_IEnemyUpdater_unsubscription_should_remove_from_updater_list
-        //Given_ISpeedChanger_should_notify_all_IEnemyUpdater_subscribed
     }
 }
