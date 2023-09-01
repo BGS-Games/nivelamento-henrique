@@ -15,11 +15,11 @@ namespace Desafio3.Testes
             enemySubscriptionManager.SubcribeEnemy(enemy);
             enemySubscriptionManager.ItemCollected(fastItem);
 
-            Assert.That(enemy.Speed, Is.EqualTo(1.4f));
+            Assert.That(enemy.Speed, Is.EqualTo(fastItem.SpeedChanger));
 
             enemySubscriptionManager.ItemCollected(fasterItem);
 
-            Assert.That(enemy.Speed, Is.EqualTo(2.8f));
+            Assert.That(enemy.Speed, Is.EqualTo(2f));
         }
 
         //Given_IEnemyUpdater_subscription_should_add_into_updater_list
