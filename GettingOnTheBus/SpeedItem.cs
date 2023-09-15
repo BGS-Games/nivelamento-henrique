@@ -10,16 +10,9 @@ namespace GettingOnTheBus
     {
         public float SpeedCoeff { get; }
 
-        public string EventType => "SpeedItem";
-
         public SpeedItem(float speedChanger)
         {
             SpeedCoeff = speedChanger;
-        }
-
-        public SpeedItem GetData()
-        {
-            return this;
         }
     }
 }
