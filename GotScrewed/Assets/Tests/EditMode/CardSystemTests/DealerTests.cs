@@ -14,7 +14,7 @@ public class DealerTests
 
         RegularDeck deck = new RegularDeck(powerDictionary);
 
-        RegularDeck shorterDeck = (RegularDeck) Dealer.DealXCards(deck, 10);
+        RegularDeck shorterDeck = new (Dealer.DealXCards(deck, 10));
 
         Assert.That(deck.CardList.Count, Is.EqualTo(30));
         Assert.That(shorterDeck.CardList.Count, Is.EqualTo(10));
@@ -30,12 +30,11 @@ public class DealerTests
         int numCards = 5;
         int numPiles = 4;
 
-        RegularDeck[] hands = (RegularDeck[]) Dealer.DealXCardsYPiles(deck, numCards, numPiles);
+        List<ICard>[] hands = Dealer.DealXCardsYPiles(deck, numCards, numPiles);
 
-        foreach(RegularDeck hand in hands)
+        foreach(List<ICard> hand in hands)
         {
-            Assert.That(hand.CardList.Count, Is.EqualTo(numCards));
+            Assert.That(hand.Count, Is.EqualTo(numCards));
         }
-
     }
 }
