@@ -79,6 +79,8 @@ namespace CardSystem
 
         public List<ICard> DrawCards(int x)
         {
+            ShuffleCards();
+
             List<ICard> cards;
             
             cards = CardList.GetRange(0, x);
