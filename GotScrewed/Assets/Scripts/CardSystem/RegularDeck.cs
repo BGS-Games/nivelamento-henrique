@@ -30,17 +30,20 @@ namespace CardSystem
         {
             cardList = new();
 
-            string value = "";
-            string suit = "";
+            string value;
+            string suit;
             int power; 
 
-            //foreach (Key k in powerDictionary)
-            //{
-                
-            //}
-            //CardInfo newCard = new(v, i++, s);
-            //cardList.Add(new RegularCard(newCard));
-             
+            foreach (KeyValuePair<string, int> entry in powerDictionary.GetPowerDic())
+            {
+                string[] s = entry.Key.Split('.');
+                value = s[0];
+                suit = s[1];
+                power = entry.Value;
+
+                CardInfo newCard = new(value, power, suit);
+                cardList.Add(new RegularCard(newCard));
+            }
 
         }
     }

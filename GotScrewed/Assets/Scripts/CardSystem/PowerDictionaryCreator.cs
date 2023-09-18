@@ -12,14 +12,14 @@ public static class PowerDictionaryCreator
 
         string[] values = { "4", "5", "6", "7", "J", "Q", "K", "A", "2", "3" };
         string[] suits = { "clubs", "hearts", "spades", "diamonds" };
-        string[] manilhas = { "4clubs", "7hearts", "Aspades", "7diamonds" };
+        string[] manilhas = { "4.clubs", "7.hearts", "A.spades", "7.diamonds" };
         
         var manilhasDic = new Dictionary<string, int>()
         {
-            { "4clubs", 14},
-            { "7hearts", 13},
-            { "Aspades", 12},
-            { "7diamonds", 11},
+            { "4.clubs", 14},
+            { "7.hearts", 13},
+            { "A.spades", 12},
+            { "7.diamonds", 11},
         };
 
         var regularDic = new Dictionary<string, int>()
@@ -40,7 +40,7 @@ public static class PowerDictionaryCreator
         {
             foreach (string s in suits)
             {
-                var cardName = v + s;
+                var cardName = v + "." + s;
 
                 if(manilhas.Contains(cardName))
                 {

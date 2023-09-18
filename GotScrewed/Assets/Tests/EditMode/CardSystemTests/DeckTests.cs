@@ -20,12 +20,14 @@ namespace CardSystemTests
             Assert.That(deck.CardList.Count, Is.EqualTo(52));
         }
 
-        //[Test]
+        [Test]
         public void Given_a_power_dictionary_should_be_able_to_create_deck_with_specif_card_powers()
         {            
             PowerDictionary powerDictionary = PowerDictionaryCreator.CreateTrucoMineiroDictionary();
 
             RegularDeck deck = new RegularDeck(powerDictionary);
+
+            Assert.That(deck.CardList.Count, Is.EqualTo(40));
         }
 
         

@@ -13,11 +13,11 @@ public class PowerDictionaryTests
     {
         PowerDictionary powerDictionary = new PowerDictionary();
 
-        Assert.That(powerDictionary.GetValue("4clubs"), Is.EqualTo(-1));
+        Assert.That(powerDictionary.GetValue("4.clubs"), Is.EqualTo(-1));
 
-        powerDictionary.SetValue("4clubs", 5);
+        powerDictionary.SetValue("4.clubs", 5);
 
-        Assert.That(powerDictionary.GetValue("4clubs"), Is.EqualTo(5));
+        Assert.That(powerDictionary.GetValue("4.clubs"), Is.EqualTo(5));
     }
 
     [Test]
@@ -25,16 +25,16 @@ public class PowerDictionaryTests
     {
         string[] values = { "4", "5", "6", "7", "J", "Q", "K", "A", "2", "3" };
         string[] suits = { "clubs", "hearts", "spades", "diamonds" };
-        string[] manilhas = { "4clubs", "7hearts", "Aspades", "7diamonds" };
+        string[] manilhas = { "4.clubs", "7.hearts", "A.spades", "7.diamonds" };
 
         PowerDictionary powerDictionary = PowerDictionaryCreator.CreateTrucoMineiroDictionary();
 
-        Assert.That(powerDictionary.GetValue("4clubs"), Is.EqualTo(14));
-        Assert.That(powerDictionary.GetValue("7hearts"), Is.EqualTo(13));
-        Assert.That(powerDictionary.GetValue("Aspades"), Is.EqualTo(12));
-        Assert.That(powerDictionary.GetValue("7diamonds"), Is.EqualTo(11));
+        Assert.That(powerDictionary.GetValue("4.clubs"), Is.EqualTo(14));
+        Assert.That(powerDictionary.GetValue("7.hearts"), Is.EqualTo(13));
+        Assert.That(powerDictionary.GetValue("A.spades"), Is.EqualTo(12));
+        Assert.That(powerDictionary.GetValue("7.diamonds"), Is.EqualTo(11));
         
-        Assert.That(powerDictionary.GetValue("7spades"), Is.EqualTo(4));
+        Assert.That(powerDictionary.GetValue("7.spades"), Is.EqualTo(4));
 
         var i = 1; 
 
@@ -42,7 +42,7 @@ public class PowerDictionaryTests
         {
             foreach (var s in suits)
             {
-                var cardName = v + s; 
+                var cardName = v + "." + s; 
                 if (!manilhas.Contains(cardName))
                 {
                     Assert.That(powerDictionary.GetValue(cardName), Is.EqualTo(i));

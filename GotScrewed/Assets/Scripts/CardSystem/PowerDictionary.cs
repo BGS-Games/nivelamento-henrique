@@ -26,4 +26,6 @@ public class PowerDictionary
 
         return -1; 
     }
+
+    public Dictionary<string, int> GetPowerDic() { return powerDic; }
 }
