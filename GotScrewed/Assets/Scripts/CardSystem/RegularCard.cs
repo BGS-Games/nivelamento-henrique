@@ -1,4 +1,8 @@
-﻿namespace CardSystem
+﻿using System;
+using System.Diagnostics;
+using UnityEngine;
+
+namespace CardSystem
 {
     public class RegularCard : ICard
     {
@@ -24,6 +28,11 @@
             Value = cardinfo.Value;
             Power = cardinfo.Power;
             Suit = cardinfo.Suit;
+        }
+
+        public void PrintCard()
+        {
+            UnityEngine.Debug.Log($"{Value} de {Suit} com potência de {Power}");
         }
     }
 }

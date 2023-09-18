@@ -8,5 +8,10 @@ namespace CardSystem
     {
         List<ICard> CardList { get; }
 
+        public void PrintCards();
+
+        public void ShuffleCards();
+
+        public List<ICard> DrawCards(int x);
     }
 }

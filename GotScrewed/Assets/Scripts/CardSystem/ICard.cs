@@ -4,6 +4,8 @@
     {
         string Value { get; }
 
-        int Power { get; }        
+        int Power { get; }
+
+        public void PrintCard();
     }
 }
