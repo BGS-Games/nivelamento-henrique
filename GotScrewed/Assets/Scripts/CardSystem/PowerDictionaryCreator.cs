@@ -107,8 +107,41 @@ public static class PowerDictionaryCreator
             var cardName = v + "." + suit;
             pDictionary.SetValue(cardName, i);
             i++;    
+        }        
+
+        return pDictionary;
+    }
+
+    public static PowerDictionary CreateHanabiDeck()
+    {
+        PowerDictionary pDictionary = new PowerDictionary();
+
+        string[] values = { "1", "2", "3", "4", "5" };
+        string[] suits = { "white", "red", "green", "blue", "yellow" };
+
+        foreach(string value in values)
+        {
+            foreach(string suit in suits)
+            {
+                var cardName = value + "." + suit;
+                pDictionary.SetValue(cardName, int.Parse(value));
+            }
         }
-        
+
+        return pDictionary;
+    }
+
+    public static PowerDictionary CreateTheMindDeck()
+    {
+        PowerDictionary pDictionary = new PowerDictionary();
+        string suit = "no Suit";
+
+
+        for (int i = 0; i <100; i++)
+        {
+            var cardName = i.ToString() + "." + suit;
+            pDictionary.SetValue(cardName, i);
+        }
 
         return pDictionary;
     }
