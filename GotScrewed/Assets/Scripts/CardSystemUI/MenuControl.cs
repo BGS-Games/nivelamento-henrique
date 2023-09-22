@@ -6,12 +6,13 @@ using System;
 using Unity.UI;
 using UnityEngine.UI;
 using UnityEditor;
+using TMPro;
 
 namespace CardSystemUI
 {
-    public class DeckController : MonoBehaviour
+    public class MenuControl : MonoBehaviour
     {
-        public static DeckController instance;
+        public static MenuControl instance;
 
         // Initialize the class as an instance 
         void Awake()
@@ -29,17 +30,23 @@ namespace CardSystemUI
         [Header("MainInfo")]
         public string deckType;
         public string actionType;
+        public int numCards;
+        public int numPlayers; 
 
         [Header("Objects")]
         public GameObject sliderNumCards;
+        public GameObject sliderNumCardsTMP;
         public GameObject sliderNumPlayers;
+        public GameObject sliderNumPlayersTMP;
         public GameObject deckImage;
         
-
         void Start()
         {
             sliderNumCards.GetComponent<Slider>().interactable = false;
             sliderNumPlayers.GetComponent<Slider>().interactable = false;
+
+            numCards = 1;
+            numPlayers = 1;
 
             PlayerPrefs.SetInt("DeckType", 0);
             PlayerPrefs.SetInt("ActionType", 0);
@@ -49,6 +56,24 @@ namespace CardSystemUI
         {
             deckType = GetDeckType();
             actionType = GetActionType();
+
+            UpdateSlidersTmp();
+        }
+
+        private void UpdateSlidersTmp()
+        {
+            sliderNumCardsTMP.GetComponent<TextMeshProUGUI>().text = numCards.ToString() + " card(s).";
+            sliderNumPlayersTMP.GetComponent<TextMeshProUGUI>().text = numPlayers.ToString() + " player(s).";
+        }
+
+        public void UpdateNumCards(GameObject slider)
+        {
+            numCards = (int) slider.GetComponent<Slider>().value;
+        }
+
+        public void UpdateNumPlayers(GameObject slider)
+        {
+            numPlayers = (int)slider.GetComponent<Slider>().value; 
         }
 
         private string GetDeckType()
@@ -113,6 +138,11 @@ namespace CardSystemUI
                 sliderNumCards.GetComponent<Slider>().interactable = false;
                 sliderNumPlayers.GetComponent<Slider>().interactable = false;
             }            
+        }
+
+        public void ButtonPlay()
+        {
+            GameControl.instance.StartGame(deckType);
         }
     }
 }

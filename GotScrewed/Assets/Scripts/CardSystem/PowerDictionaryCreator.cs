@@ -8,6 +8,23 @@ using UnityEngine;
 
 public static class PowerDictionaryCreator
 {
+    public static PowerDictionary CreateDic(string type)
+    {
+        if (type == "TrucoMineiro")
+        {
+            return CreateTrucoMineiroDictionary();
+        }
+        else if (type == "TheMind")
+        {
+            return CreateTheMindDeck();
+        }
+        else if (type == "Hanabi")
+        {
+            return CreateHanabiDeck();
+        }
+
+        return CreateBasicDeckDictionary();
+    }
     public static PowerDictionary CreateTrucoMineiroDictionary()
     {
         PowerDictionary pDictionary = new PowerDictionary();
