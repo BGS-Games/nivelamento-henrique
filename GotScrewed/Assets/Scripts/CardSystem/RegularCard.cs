@@ -41,7 +41,7 @@ namespace CardSystem
   
         private string GetCardName()
         {
-            return this.Value + "_of_" + this.Suit;
+            return this.Value + "." + this.Suit;
         }
 
         public void UpdateFaceSide()

@@ -18,6 +18,7 @@ namespace CardSystemUI
 
         public GameObject drawCardsMainPanel;
         public GameObject drawCardsDeckPanel;
+        public GameObject drawnCardsPanel;
         
         public GameObject distributeCardsMainPanel;        
         public GameObject distributeCardsDeckPanel;
@@ -78,22 +79,41 @@ namespace CardSystemUI
             GeneralMethods.ActivateMenuAnimateX(obj, 0);
         }            
 
+        public void DrawButton()
+        {
+            //shuffle deck and draw a card
+            ICard drawnCard = currentDeck.DrawCards(1)[0];
+
+            //instantiate single card
+            InstatiateCardObject(drawnCard, drawnCardsPanel, true);
+
+            //recreates cardsObjects without card
+            InstantiateAllCardsFromDeck();
+
+        }
+
         //TODO: TALVEZ ESSAS DUAS FUNÇÕES DEVERIAM FAZER PARTE DO DEALER
         private void InstantiateAllCardsFromDeck()
         {
+            GeneralMethods.CleanPanel(deckPanel);
+
             foreach (ICard c in currentDeck.CardList)
             {
-                InstatiateCardObject(c);
+                InstatiateCardObject(c, deckPanel, false);
             }
         }
 
-        private void InstatiateCardObject(ICard c)
+        private void InstatiateCardObject(ICard c, GameObject panel, bool isUp)
         {
             GameObject newCard = Instantiate(cardPrefab);
-            newCard.transform.SetParent(deckPanel.transform);
+            newCard.transform.SetParent(panel.transform);
             newCard.GetComponent<CardData>().SetCardData(c);
             newCard.name = newCard.GetComponent<CardData>().ReturnName();
-            ////newCard.GetComponent<Image>().sprite = Resources.Load<Sprite>(c.ImageAdress);
+            
+            if (isUp)
+            {
+                newCard.GetComponent<CardData>().UpdateFaceSide();
+            }           
 
         }
     }

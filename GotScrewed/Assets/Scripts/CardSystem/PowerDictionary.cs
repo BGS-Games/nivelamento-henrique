@@ -7,9 +7,11 @@ public class PowerDictionary
 {
     private readonly Dictionary<string, int> powerDic = new();
 
-    public PowerDictionary()
-    {
+    public string Type {get;} 
 
+    public PowerDictionary(string type)
+    {
+        Type = type;
     }
 
     public void SetValue (string cardName, int value)

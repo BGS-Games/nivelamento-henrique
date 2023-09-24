@@ -23,7 +23,7 @@ namespace CardSystemTests
         [Test]
         public void Given_a_power_dictionary_should_be_able_to_create_deck_with_specif_card_powers()
         {
-            PowerDictionary powerDictionary = PowerDictionaryCreator.CreateTrucoMineiroDictionary();
+            PowerDictionary powerDictionary = PowerDictionaryCreator.CreateTrucoMineiroDictionary("TrucoMineiro");
 
             RegularDeck deck = new RegularDeck(powerDictionary);
 
@@ -33,7 +33,7 @@ namespace CardSystemTests
         [Test]
         public void Given_a_regular_deck_should_be_able_to_randomly_choose_a_card()
         {
-            PowerDictionary powerDictionary = PowerDictionaryCreator.CreateTrucoMineiroDictionary();
+            PowerDictionary powerDictionary = PowerDictionaryCreator.CreateTrucoMineiroDictionary("TrucoMineiro");
 
             RegularDeck deck = new RegularDeck(powerDictionary);
 
@@ -45,7 +45,7 @@ namespace CardSystemTests
         [Test]
         public void Given_a_regular_deck_should_be_able_to_shuffle_cards()
         {
-            PowerDictionary powerDictionary = PowerDictionaryCreator.CreateFourCardsDeck();
+            PowerDictionary powerDictionary = PowerDictionaryCreator.CreateFourCardsDeck("FourCardDeck");
 
             RegularDeck deck = new RegularDeck(powerDictionary);
 

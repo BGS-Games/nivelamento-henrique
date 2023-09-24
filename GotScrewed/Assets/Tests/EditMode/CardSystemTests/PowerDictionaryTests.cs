@@ -11,7 +11,7 @@ public class PowerDictionaryTests
     [Test]
     public void Given_a_key_with_card_name_should_return_card_power_if_it_exists_in_dictionary()
     {
-        PowerDictionary powerDictionary = new PowerDictionary();
+        PowerDictionary powerDictionary = new PowerDictionary("TrucoMineiro");
 
         Assert.That(powerDictionary.GetValue("4.clubs"), Is.EqualTo(-1));
 
@@ -27,7 +27,7 @@ public class PowerDictionaryTests
         string[] suits = { "clubs", "hearts", "spades", "diamonds" };
         string[] manilhas = { "4.clubs", "7.hearts", "A.spades", "7.diamonds" };
 
-        PowerDictionary powerDictionary = PowerDictionaryCreator.CreateTrucoMineiroDictionary();
+        PowerDictionary powerDictionary = PowerDictionaryCreator.CreateTrucoMineiroDictionary("TrucoMineiro");
 
         Assert.That(powerDictionary.GetValue("4.clubs"), Is.EqualTo(14));
         Assert.That(powerDictionary.GetValue("7.hearts"), Is.EqualTo(13));

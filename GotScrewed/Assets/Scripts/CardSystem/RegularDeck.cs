@@ -50,7 +50,7 @@ namespace CardSystem
                 suit = s[1];
                 power = entry.Value;
 
-                CardInfo newCard = new(value, power, suit, Type);
+                CardInfo newCard = new(value, power, suit, powerDictionary.Type);
                 cardList.Add(new RegularCard(newCard));
             }
         }

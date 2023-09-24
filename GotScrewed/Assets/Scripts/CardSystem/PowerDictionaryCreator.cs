@@ -11,23 +11,23 @@ public static class PowerDictionaryCreator
     public static PowerDictionary CreateDic(string type)
     {
         if (type == "TrucoMineiro")
-        {
-            return CreateTrucoMineiroDictionary();
+        {            
+            return CreateTrucoMineiroDictionary("TrucoMineiro");
         }
         else if (type == "TheMind")
         {
-            return CreateTheMindDeck();
+            return CreateTheMindDeck("TheMind");
         }
         else if (type == "Hanabi")
         {
-            return CreateHanabiDeck();
+            return CreateHanabiDeck("Hanabi");
         }
 
-        return CreateBasicDeckDictionary();
+        return CreateBasicDeckDictionary("TraditionalDeck");
     }
-    public static PowerDictionary CreateTrucoMineiroDictionary()
+    public static PowerDictionary CreateTrucoMineiroDictionary(string type)
     {
-        PowerDictionary pDictionary = new PowerDictionary();
+        PowerDictionary pDictionary = new PowerDictionary(type);
 
         string[] values = { "4", "5", "6", "7", "J", "Q", "K", "A", "2", "3" };
         string[] suits = { "clubs", "hearts", "spades", "diamonds" };
@@ -77,19 +77,22 @@ public static class PowerDictionaryCreator
     }
 
 
-    public static PowerDictionary CreateBasicDeckDictionary()
+    public static PowerDictionary CreateBasicDeckDictionary(string type)
     {
-        PowerDictionary pDictionary = new PowerDictionary();
+        PowerDictionary pDictionary = new PowerDictionary(type);
 
-        string[] values = { "2", "3", "4", "5", "6", "7", "J", "Q", "K", "A" };
+        string[] values = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
         string[] suits = { "clubs", "hearts", "spades", "diamonds" };
 
         var regularDic = new Dictionary<string, int>()
         {            
-            {"A", 11},
-            {"K", 10},
-            {"Q", 9},
-            {"J", 8},
+            {"A", 14},
+            {"K", 13},
+            {"Q", 12},
+            {"J", 11},
+            {"10", 10},
+            {"9", 9},
+            {"8", 8},            
             {"7", 7},
             {"6", 6},
             {"5", 5},
@@ -111,9 +114,9 @@ public static class PowerDictionaryCreator
     }
 
 
-    public static PowerDictionary CreateFourCardsDeck()
+    public static PowerDictionary CreateFourCardsDeck(string type)
     {
-        PowerDictionary pDictionary = new PowerDictionary();
+        PowerDictionary pDictionary = new PowerDictionary(type);
 
         string[] values = { "A", "2", "3", "4" };
         string suit = "hearts";
@@ -129,9 +132,9 @@ public static class PowerDictionaryCreator
         return pDictionary;
     }
 
-    public static PowerDictionary CreateHanabiDeck()
+    public static PowerDictionary CreateHanabiDeck(string type)
     {
-        PowerDictionary pDictionary = new PowerDictionary();
+        PowerDictionary pDictionary = new PowerDictionary(type);
 
         string[] values = { "1", "2", "3", "4", "5" };
         string[] suits = { "white", "red", "green", "blue", "yellow" };
@@ -148,9 +151,9 @@ public static class PowerDictionaryCreator
         return pDictionary;
     }
 
-    public static PowerDictionary CreateTheMindDeck()
+    public static PowerDictionary CreateTheMindDeck(string type)
     {
-        PowerDictionary pDictionary = new PowerDictionary();
+        PowerDictionary pDictionary = new PowerDictionary(type);
         string suit = "no Suit";
 
 

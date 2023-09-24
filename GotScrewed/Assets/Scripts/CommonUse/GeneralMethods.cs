@@ -24,6 +24,14 @@ namespace CommonUse
             menu.SetActive(false);            
         }
 
+        internal static void CleanPanel(GameObject panel)
+        {
+            foreach (Transform child in panel.transform)
+            {
+                UnityEngine.Object.Destroy(child.gameObject);
+            }
+        }
+
         internal static void DeactivateMenuAnimateY(GameObject menu, float postionY)
         {
             LeanTween.moveY(menu.GetComponent<RectTransform>(), postionY, 0.3f)

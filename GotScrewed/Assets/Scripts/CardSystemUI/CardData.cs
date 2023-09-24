@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CardSystemUI
 { 
@@ -37,7 +38,10 @@ namespace CardSystemUI
         // Update is called once per frame
         void Update()
         {
-        
+            if (IsUp)
+            {                
+                gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>(ImageAdress);                
+            }
         }
         public void PrintCard()
         {
@@ -51,7 +55,7 @@ namespace CardSystemUI
 
         public void UpdateFaceSide()
         {
-            throw new System.NotImplementedException();
+            IsUp = !IsUp;            
         }
     }
 }
