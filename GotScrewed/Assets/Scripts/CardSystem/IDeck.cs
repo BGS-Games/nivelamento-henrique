@@ -6,6 +6,8 @@ namespace CardSystem
 {
     public interface IDeck
     {
+        public string Type { get; }
+
         List<ICard> CardList { get; }
 
         public void PrintCards();
@@ -13,5 +15,7 @@ namespace CardSystem
         public void ShuffleCards();
 
         public List<ICard> DrawCards(int x);
+
+        
     }
 }

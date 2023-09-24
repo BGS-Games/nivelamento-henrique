@@ -10,17 +10,21 @@ namespace CardSystem
     {
         private readonly List<ICard> cardList;
         public List<ICard> CardList { get => cardList; }
+        
+        public string Type { get; }
 
-        public RegularDeck(string[] suits, string[] values)
+        public RegularDeck(string[] suits, string[] values, string type)
         {
+            Type = type;
+
             cardList = new();
 
             int i = 0;
-            foreach (string s in suits)
+            foreach (string suit in suits)
             {
-                foreach (string v in values)
+                foreach (string value in values)
                 {
-                    CardInfo newCard = new(v, i++, s);
+                    CardInfo newCard = new(value, i++, suit, type);
                     cardList.Add(new RegularCard(newCard));
                 }
             }
@@ -46,7 +50,7 @@ namespace CardSystem
                 suit = s[1];
                 power = entry.Value;
 
-                CardInfo newCard = new(value, power, suit);
+                CardInfo newCard = new(value, power, suit, Type);
                 cardList.Add(new RegularCard(newCard));
             }
         }

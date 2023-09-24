@@ -2,8 +2,11 @@ using CardSystemUI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using CardSystem;
 using CommonUse;
+using System;
+using System.IO;
 
 namespace CardSystemUI
 {
@@ -11,9 +14,20 @@ namespace CardSystemUI
     {
         public static GameControl instance;
 
-        public GameObject MenuMainPanel;
-        public GameObject DrawCardsMainPanel;
-        public GameObject DistributeCardsMainPanel;
+        public GameObject menuMainPanel;        
+
+        public GameObject drawCardsMainPanel;
+        public GameObject drawCardsDeckPanel;
+        
+        public GameObject distributeCardsMainPanel;        
+        public GameObject distributeCardsDeckPanel;
+
+        public GameObject deckPanel;
+
+        public GameObject cardPrefab;
+        public Sprite deckBackCardSprite; 
+
+        private RegularDeck currentDeck;        
 
         // Initialize the class as an instance 
         void Awake()
@@ -28,21 +42,59 @@ namespace CardSystemUI
             }
         }
 
-        public void StartGame(string type)
+        public void StartGame()
+        {            
+            CreateDeck();
+
+            SetMenus();
+
+            InstantiateAllCardsFromDeck();
+        }
+
+        private void CreateDeck()
         {
-            //RegularDeck currentDeck = new(PowerDictionaryCreator.CreateDic(type));
-            //TODO create objects with the number of cards in the deck
+            currentDeck = new(PowerDictionaryCreator.CreateDic(MenuControl.instance.GetDeckType()));
+        }
 
-            GeneralMethods.DeactivateMenuAnimateY(MenuMainPanel, 1100);
+        private void SetMenus()
+        {
+            GeneralMethods.DeactivateMenuAnimateY(menuMainPanel, 1100);
+            
+            CallActionMenu();
 
-            GameObject obj = DrawCardsMainPanel; 
+        }
+
+        private void CallActionMenu()
+        {
+            GameObject obj = drawCardsMainPanel;
+            deckPanel = drawCardsDeckPanel;
 
             if(PlayerPrefs.GetInt("ActionType") == 1)
             {
-                obj = DistributeCardsMainPanel;
+                obj = distributeCardsMainPanel;
+                deckPanel = distributeCardsDeckPanel;
             }
 
             GeneralMethods.ActivateMenuAnimateX(obj, 0);
+        }            
+
+        //TODO: TALVEZ ESSAS DUAS FUNÇÕES DEVERIAM FAZER PARTE DO DEALER
+        private void InstantiateAllCardsFromDeck()
+        {
+            foreach (ICard c in currentDeck.CardList)
+            {
+                InstatiateCardObject(c);
+            }
+        }
+
+        private void InstatiateCardObject(ICard c)
+        {
+            GameObject newCard = Instantiate(cardPrefab);
+            newCard.transform.SetParent(deckPanel.transform);
+            newCard.GetComponent<CardData>().SetCardData(c);
+            newCard.name = newCard.GetComponent<CardData>().ReturnName();
+            ////newCard.GetComponent<Image>().sprite = Resources.Load<Sprite>(c.ImageAdress);
+
         }
     }
 }

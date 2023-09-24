@@ -39,6 +39,7 @@ namespace CardSystemUI
         public GameObject sliderNumPlayers;
         public GameObject sliderNumPlayersTMP;
         public GameObject deckImage;
+        public GameObject playButton;
         
         void Start()
         {
@@ -58,6 +59,8 @@ namespace CardSystemUI
             actionType = GetActionType();
 
             UpdateSlidersTmp();
+
+            UpdatesPlayButtonInteractability();
         }
 
         private void UpdateSlidersTmp()
@@ -76,7 +79,19 @@ namespace CardSystemUI
             numPlayers = (int)slider.GetComponent<Slider>().value; 
         }
 
-        private string GetDeckType()
+        private void UpdatesPlayButtonInteractability()
+        {
+            if(PlayerPrefs.GetInt("DeckType") > 1)
+            {
+                playButton.GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                playButton.GetComponent<Button>().interactable = true;
+            }
+        }
+
+        public string GetDeckType()
         {
             var type = PlayerPrefs.GetInt("DeckType");            
 
@@ -142,7 +157,7 @@ namespace CardSystemUI
 
         public void ButtonPlay()
         {
-            GameControl.instance.StartGame(deckType);
+            GameControl.instance.StartGame();
         }
     }
 }

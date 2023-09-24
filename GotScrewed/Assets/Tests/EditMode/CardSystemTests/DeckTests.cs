@@ -15,7 +15,7 @@ namespace CardSystemTests
             string[] suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
             string[] values = { "4", "5", "¨6", "7", "8", "9", "10", "J", "Q", "K", "A", "2", "3" };
 
-            RegularDeck deck = new RegularDeck(suits, values);
+            RegularDeck deck = new RegularDeck(suits, values, "TraditionalDeck");
 
             Assert.That(deck.CardList.Count, Is.EqualTo(52));
         }

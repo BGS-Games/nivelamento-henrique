@@ -26,8 +26,9 @@ namespace CommonUse
 
         internal static void DeactivateMenuAnimateY(GameObject menu, float postionY)
         {
-            LeanTween.moveY(menu.GetComponent<RectTransform>(), postionY, 0.6f);                     
-            menu.SetActive(false);
+            LeanTween.moveY(menu.GetComponent<RectTransform>(), postionY, 0.3f)
+                .setEase(LeanTweenType.easeInOutBack)
+                .setOnComplete(() => menu.SetActive(false));                                 
         }
     }
 }
