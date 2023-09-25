@@ -7,13 +7,13 @@ using CardSystem;
 using CommonUse;
 using System;
 using System.IO;
+using UnityFoundation.Code;
 
 namespace CardSystemUI
 {
-    public class GameControl : MonoBehaviour
-    {
-        public static GameControl instance;
-
+    //TODO: QUEBRAR PARTE DESSE CÓDIGO EM DOIS - UM PRA CADA TELA
+    public class GameControl : Singleton<GameControl>
+    {     
         public GameObject menuMainPanel;        
 
         public GameObject drawCardsMainPanel;
@@ -28,20 +28,8 @@ namespace CardSystemUI
         public GameObject cardPrefab;
         public Sprite deckBackCardSprite; 
 
-        private RegularDeck currentDeck;        
-
-        // Initialize the class as an instance 
-        void Awake()
-        {
-            if(instance == null)
-            {
-                instance = this;
-            }
-            else if(instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
+        private RegularDeck currentDeck;
+        
 
         public void StartGame()
         {            
@@ -54,7 +42,7 @@ namespace CardSystemUI
 
         private void CreateDeck()
         {
-            currentDeck = new(PowerDictionaryCreator.CreateDic(MenuControl.instance.GetDeckType()));
+            currentDeck = new(PowerDictionaryCreator.CreateDic(MenuControl.Instance.GetDeckType()));
         }
 
         private void SetMenus()

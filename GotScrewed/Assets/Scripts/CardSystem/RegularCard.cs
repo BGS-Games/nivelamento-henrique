@@ -12,19 +12,6 @@ namespace CardSystem
         public string ImageAdress { get; set; }       
         public bool IsUp { get; set;  }
 
-        public RegularCard(string name)
-        {
-            Value = name;
-            Power = 0;
-        }
-
-        public RegularCard(string name, int value, string suit)
-        {
-            Value = name;
-            Power = value;
-            Suit = suit;
-        }
-
         public RegularCard (CardInfo cardinfo)
         {
             Value = cardinfo.Value;

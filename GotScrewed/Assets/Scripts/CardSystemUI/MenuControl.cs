@@ -7,26 +7,12 @@ using Unity.UI;
 using UnityEngine.UI;
 using UnityEditor;
 using TMPro;
+using UnityFoundation.Code;
 
 namespace CardSystemUI
 {
-    public class MenuControl : MonoBehaviour
+    public class MenuControl : Singleton<MenuControl>
     {
-        public static MenuControl instance;
-
-        // Initialize the class as an instance 
-        void Awake()
-        {
-            if(instance == null)
-            {
-                instance = this;
-            }
-            else if(instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
-
         [Header("MainInfo")]
         public string deckType;
         public string actionType;
@@ -41,7 +27,7 @@ namespace CardSystemUI
         public GameObject deckImage;
         public GameObject playButton;
         
-        void Start()
+        new void Start()
         {
             sliderNumCards.GetComponent<Slider>().interactable = false;
             sliderNumPlayers.GetComponent<Slider>().interactable = false;
@@ -156,8 +142,8 @@ namespace CardSystemUI
         }
 
         public void ButtonPlay()
-        {
-            GameControl.instance.StartGame();
+        {            
+            GameControl.Instance.StartGame();
         }
     }
 }
