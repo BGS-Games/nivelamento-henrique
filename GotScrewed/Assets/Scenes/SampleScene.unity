@@ -1235,6 +1235,58 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!1 &297842967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297842968}
+  - component: {fileID: 297842969}
+  m_Layer: 0
+  m_Name: DrawCardMenuControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &297842968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297842967}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 519420032}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &297842969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297842967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50a30d8a59b77744aaeb1d73cf695dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <DestroyOnLoad>k__BackingField: 1
+  mainPanel: {fileID: 930356677}
+  deckPanel: {fileID: 1646986435}
+  drawnCardsPanel: {fileID: 897761349}
+  deckCounter: {fileID: 1214251772}
+  drawnCardsCounter: {fileID: 780026095}
+  cardPrefab: {fileID: 2272638821579496386, guid: 8ec88e3fbdd5be94d915cdb26d0c09d9, type: 3}
+  deckBackCardSprite: {fileID: 21300000, guid: ac7c56ea5e535ad4fa493e92d5fd4113, type: 3}
 --- !u!1 &310955900
 GameObject:
   m_ObjectHideFlags: 0
@@ -2486,6 +2538,8 @@ Transform:
   - {fileID: 583297122}
   - {fileID: 2133549356}
   - {fileID: 1299917274}
+  - {fileID: 297842968}
+  - {fileID: 1543583954}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2784,8 +2838,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1299917275}
-        m_TargetAssemblyTypeName: CardSystemUI.GameControl, Scripts
+      - m_Target: {fileID: 297842969}
+        m_TargetAssemblyTypeName: CardSystemUI.DrawCardMenuControl, Scripts
         m_MethodName: DrawButton
         m_Mode: 1
         m_Arguments:
@@ -3083,7 +3137,7 @@ GameObject:
   - component: {fileID: 780026098}
   - component: {fileID: 780026097}
   m_Layer: 5
-  m_Name: CardsCountTMP
+  m_Name: DrawnCardsCountTMP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4154,7 +4208,7 @@ GameObject:
   - component: {fileID: 897761351}
   - component: {fileID: 897761353}
   m_Layer: 5
-  m_Name: CardsPanel
+  m_Name: DrawnCardsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4231,12 +4285,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: -105
-    m_Right: -80
+    m_Left: 48
+    m_Right: 29
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: -199.4
+  m_Spacing: -150
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -5761,16 +5815,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <DestroyOnLoad>k__BackingField: 1
   menuMainPanel: {fileID: 813315852}
-  drawCardsMainPanel: {fileID: 930356677}
-  drawCardsDeckPanel: {fileID: 1646986435}
-  drawnCardsPanel: {fileID: 897761349}
-  drawCardsDeckCounter: {fileID: 1214251772}
-  drawCardsListCounter: {fileID: 780026095}
-  distributeCardsMainPanel: {fileID: 962214283}
-  distributeCardsDeckPanel: {fileID: 1623114990}
-  deckPanel: {fileID: 0}
-  cardPrefab: {fileID: 2272638821579496386, guid: 8ec88e3fbdd5be94d915cdb26d0c09d9, type: 3}
-  deckBackCardSprite: {fileID: 21300000, guid: ac7c56ea5e535ad4fa493e92d5fd4113, type: 3}
 --- !u!1 &1340114885
 GameObject:
   m_ObjectHideFlags: 0
@@ -6531,6 +6575,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1543583953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1543583954}
+  m_Layer: 0
+  m_Name: DistributeCardMenuControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1543583954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543583953}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 519420032}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1566238652
 GameObject:
