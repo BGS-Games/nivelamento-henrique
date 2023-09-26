@@ -8,28 +8,42 @@ using CommonUse;
 using System;
 using System.IO;
 using UnityFoundation.Code;
+using TMPro;
 
 namespace CardSystemUI
 {
     //TODO: QUEBRAR PARTE DESSE CÓDIGO EM DOIS - UM PRA CADA TELA
     public class GameControl : Singleton<GameControl>
     {     
-        public GameObject menuMainPanel;        
-
+        public GameObject menuMainPanel;
+        
+        [Header("DrawCardsPanels")]
         public GameObject drawCardsMainPanel;
         public GameObject drawCardsDeckPanel;
         public GameObject drawnCardsPanel;
-        
+
+        [Header("Counters")]
+        public GameObject drawCardsDeckCounter;
+        public GameObject drawCardsListCounter;
+
+        [Header("DistributeCardsPanels")]
         public GameObject distributeCardsMainPanel;        
         public GameObject distributeCardsDeckPanel;
-
+        
+        [Header("OtherObjects")]
         public GameObject deckPanel;
-
         public GameObject cardPrefab;
         public Sprite deckBackCardSprite; 
 
         private RegularDeck currentDeck;
-        
+        private readonly List<ICard> drawnCardsList = new();
+
+
+        private void UpdateDrawCardCounters()
+        {
+            drawCardsDeckCounter.GetComponent<TextMeshProUGUI>().text = currentDeck.ReturnNumberCards().ToString();
+            drawCardsListCounter.GetComponent<TextMeshProUGUI>().text = drawnCardsList.Count.ToString();
+        }
 
         public void StartGame()
         {            
@@ -65,19 +79,21 @@ namespace CardSystemUI
             }
 
             GeneralMethods.ActivateMenuAnimateX(obj, 0);
+
+            UpdateDrawCardCounters();
         }            
 
         public void DrawButton()
-        {
-            //shuffle deck and draw a card
+        {            
             ICard drawnCard = currentDeck.DrawCards(1)[0];
-
-            //instantiate single card
+                        
+            drawnCardsList.Add(drawnCard);
+                        
             InstatiateCardObject(drawnCard, drawnCardsPanel, true);
-
-            //recreates cardsObjects without card
+                        
             InstantiateAllCardsFromDeck();
 
+            UpdateDrawCardCounters();
         }
 
         //TODO: TALVEZ ESSAS DUAS FUNÇÕES DEVERIAM FAZER PARTE DO DEALER

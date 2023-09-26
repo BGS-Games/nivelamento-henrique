@@ -93,5 +93,10 @@ namespace CardSystem
             
             return cards;
         }
+
+        public int ReturnNumberCards()
+        {
+            return cardList.Count; 
+        }
     }
 }

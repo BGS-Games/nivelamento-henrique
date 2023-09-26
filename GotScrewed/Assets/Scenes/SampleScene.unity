@@ -5759,10 +5759,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1145928f00e3dfc4389f16d0aca1e969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <DestroyOnLoad>k__BackingField: 1
   menuMainPanel: {fileID: 813315852}
   drawCardsMainPanel: {fileID: 930356677}
   drawCardsDeckPanel: {fileID: 1646986435}
   drawnCardsPanel: {fileID: 897761349}
+  drawCardsDeckCounter: {fileID: 1214251772}
+  drawCardsListCounter: {fileID: 780026095}
   distributeCardsMainPanel: {fileID: 962214283}
   distributeCardsDeckPanel: {fileID: 1623114990}
   deckPanel: {fileID: 0}
@@ -8739,6 +8742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79718918cf457a049ac10b5509fb6b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <DestroyOnLoad>k__BackingField: 1
   deckType: 
   actionType: 
   numCards: 0
