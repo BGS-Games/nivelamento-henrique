@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
-
 
 namespace CommonUse
 {
@@ -14,19 +8,19 @@ namespace CommonUse
         {
             menu.SetActive(true);
             LeanTween.moveX(menu.GetComponent<RectTransform>(), positionX, 0.6f)
-                     .setEase(LeanTweenType.easeInOutBack);            
+                     .setEase(LeanTweenType.easeInOutBack);
         }
 
-        public static void DeactivateMenuAnimateX(GameObject menu, float positionX) 
+        public static void DeactivateMenuAnimateX(GameObject menu, float positionX)
         {
             LeanTween.moveX(menu.GetComponent<RectTransform>(), positionX, 0.6f)
                      .setEase(LeanTweenType.easeInOutBack);
-            menu.SetActive(false);            
+            menu.SetActive(false);
         }
 
         internal static void CleanPanel(GameObject panel)
         {
-            foreach (Transform child in panel.transform)
+            foreach(Transform child in panel.transform)
             {
                 UnityEngine.Object.Destroy(child.gameObject);
             }
@@ -36,8 +30,7 @@ namespace CommonUse
         {
             LeanTween.moveY(menu.GetComponent<RectTransform>(), postionY, 0.3f)
                 .setEase(LeanTweenType.easeInOutBack)
-                .setOnComplete(() => menu.SetActive(false));                                 
+                .setOnComplete(() => menu.SetActive(false));
         }
     }
 }
-

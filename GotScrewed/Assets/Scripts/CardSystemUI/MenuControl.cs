@@ -1,12 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using CardSystem;
-using System;
-using Unity.UI;
-using UnityEngine.UI;
-using UnityEditor;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 using UnityFoundation.Code;
 
 namespace CardSystemUI
@@ -15,19 +9,21 @@ namespace CardSystemUI
     {
         [Header("MainInfo")]
         public string deckType;
+
         public string actionType;
         public int numCards;
-        public int numPlayers; 
+        public int numPlayers;
 
         [Header("Objects")]
         public GameObject sliderNumCards;
+
         public GameObject sliderNumCardsTMP;
         public GameObject sliderNumPlayers;
         public GameObject sliderNumPlayersTMP;
         public GameObject deckImage;
         public GameObject playButton;
-        
-        new void Start()
+
+        private new void Start()
         {
             sliderNumCards.GetComponent<Slider>().interactable = false;
             sliderNumPlayers.GetComponent<Slider>().interactable = false;
@@ -39,7 +35,7 @@ namespace CardSystemUI
             PlayerPrefs.SetInt("ActionType", 0);
         }
 
-        void Update()
+        private void Update()
         {
             deckType = GetDeckType();
             actionType = GetActionType();
@@ -57,12 +53,12 @@ namespace CardSystemUI
 
         public void UpdateNumCards(GameObject slider)
         {
-            numCards = (int) slider.GetComponent<Slider>().value;
+            numCards = (int)slider.GetComponent<Slider>().value;
         }
 
         public void UpdateNumPlayers(GameObject slider)
         {
-            numPlayers = (int)slider.GetComponent<Slider>().value; 
+            numPlayers = (int)slider.GetComponent<Slider>().value;
         }
 
         private void UpdatesPlayButtonInteractability()
@@ -79,17 +75,17 @@ namespace CardSystemUI
 
         public string GetDeckType()
         {
-            var type = PlayerPrefs.GetInt("DeckType");            
+            var type = PlayerPrefs.GetInt("DeckType");
 
-            if (type == 1)
+            if(type == 1)
             {
                 return "TrucoMineiro";
             }
-            else if (type == 2)
+            else if(type == 2)
             {
                 return "Hanabi";
             }
-            else if (type == 3)
+            else if(type == 3)
             {
                 return "TheMind";
             }
@@ -129,7 +125,7 @@ namespace CardSystemUI
 
         private void UpdateSliders()
         {
-            if (PlayerPrefs.GetInt("ActionType") == 1)
+            if(PlayerPrefs.GetInt("ActionType") == 1)
             {
                 sliderNumCards.GetComponent<Slider>().interactable = true;
                 sliderNumPlayers.GetComponent<Slider>().interactable = true;
@@ -138,11 +134,11 @@ namespace CardSystemUI
             {
                 sliderNumCards.GetComponent<Slider>().interactable = false;
                 sliderNumPlayers.GetComponent<Slider>().interactable = false;
-            }            
+            }
         }
 
         public void ButtonPlay()
-        {            
+        {
             GameControl.Instance.StartGame();
         }
     }

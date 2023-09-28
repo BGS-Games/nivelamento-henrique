@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace CardSystem
 {
@@ -15,8 +12,8 @@ namespace CardSystem
         public static List<ICard>[] DealXCardsYPiles(IDeck deck, int numCards, int numPiles)
         {
             List<ICard>[] pilesArray = new List<ICard>[numPiles];
-            
-            for (int i = 0; i < numPiles; i++)
+
+            for(int i = 0; i < numPiles; i++)
             {
                 pilesArray[i] = deck.DrawCards(numCards);
             }

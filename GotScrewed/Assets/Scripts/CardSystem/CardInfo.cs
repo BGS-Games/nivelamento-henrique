@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace CardSystem
+﻿namespace CardSystem
 {
     public readonly struct CardInfo
     {
@@ -12,13 +10,10 @@ namespace CardSystem
             DeckType = deckType;
         }
 
-
-        public string Value{ get; }
+        public string Value { get; }
         public int Power { get; }
         public string Suit { get; }
 
         public string DeckType { get; }
-
-        
     }
 }

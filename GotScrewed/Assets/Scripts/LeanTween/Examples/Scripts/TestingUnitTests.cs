@@ -1,21 +1,17 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using DentedPixel;
+using UnityEngine;
 
 namespace DentedPixel.LTExamples
 {
-
     public class TestingUnitTests : MonoBehaviour
     {
-
         public GameObject cube1;
         public GameObject cube2;
         public GameObject cube3;
         public GameObject cube4;
         public GameObject cubeAlpha1;
         public GameObject cubeAlpha2;
-
 
         private bool eventGameObjectWasCalled = false, eventGeneralWasCalled = false;
         private int lt1Id;
@@ -32,13 +28,13 @@ namespace DentedPixel.LTExamples
         private float timeElapsedIgnoreTimeScale;
         private bool pauseTweenDidFinish = false;
 
-        void Awake()
+        private void Awake()
         {
             boxNoCollider = GameObject.CreatePrimitive(PrimitiveType.Cube);
             Destroy(boxNoCollider.GetComponent(typeof(BoxCollider)) as Component);
         }
 
-        void Start()
+        private void Start()
         {
             //          Time.timeScale = 0.25f;
 
@@ -85,7 +81,7 @@ namespace DentedPixel.LTExamples
             // Queue up a bunch of tweens, cancel some of them but expect the remainder to finish
             GameObject[] cubes = new GameObject[99];
             int[] tweenIds = new int[cubes.Length];
-            for (int i = 0; i < cubes.Length; i++)
+            for(int i = 0; i < cubes.Length; i++)
             {
                 GameObject c = cubeNamed("cancel" + i);
                 tweenIds[i] = LeanTween.moveX(c, 100f, 1f).id;
@@ -93,24 +89,24 @@ namespace DentedPixel.LTExamples
             }
             int onCompleteCount = 0;
             LeanTween.delayedCall(cubes[0], 0.2f, () => {
-                for (int i = 0; i < cubes.Length; i++)
+                for(int i = 0; i < cubes.Length; i++)
                 {
-                    if (i % 3 == 0)
+                    if(i % 3 == 0)
                     {
                         LeanTween.cancel(cubes[i]);
                     }
-                    else if (i % 3 == 1)
+                    else if(i % 3 == 1)
                     {
                         LeanTween.cancel(tweenIds[i]);
                     }
-                    else if (i % 3 == 2)
+                    else if(i % 3 == 2)
                     {
                         LTDescr descr = LeanTween.descr(tweenIds[i]);
                         //                      Debug.Log("descr:"+descr);
                         descr.setOnComplete(() => {
                             onCompleteCount++;
                             //                          Debug.Log("onCompleteCount:"+onCompleteCount);
-                            if (onCompleteCount >= 33)
+                            if(onCompleteCount >= 33)
                             {
                                 LeanTest.expect(true, "CANCELS DO NOT EFFECT FINISHING");
                             }
@@ -233,28 +229,28 @@ namespace DentedPixel.LTExamples
             // Easing Methods
             int totalEasingCheck = 0;
             int totalEasingCheckSuccess = 0;
-            for (int j = 0; j < 2; j++)
+            for(int j = 0; j < 2; j++)
             {
                 bool isCheckingFrom = j == 1;
                 int totalTweenTypeLength = (int)LeanTweenType.easeShake;
-                for (int i = (int)LeanTweenType.notUsed; i < totalTweenTypeLength; i++)
+                for(int i = (int)LeanTweenType.notUsed; i < totalTweenTypeLength; i++)
                 {
                     LeanTweenType easeType = (LeanTweenType)i;
                     GameObject cube = cubeNamed("cube" + easeType);
                     LTDescr descr = LeanTween.moveLocalX(cube, 5, 0.1f).setOnComplete((object obj) => {
                         GameObject cubeIn = obj as GameObject;
                         totalEasingCheck++;
-                        if (cubeIn.transform.position.x == 5f)
+                        if(cubeIn.transform.position.x == 5f)
                         {
                             totalEasingCheckSuccess++;
                         }
-                        if (totalEasingCheck == (2 * totalTweenTypeLength))
+                        if(totalEasingCheck == (2 * totalTweenTypeLength))
                         {
                             LeanTest.expect(totalEasingCheck == totalEasingCheckSuccess, "EASING TYPES");
                         }
                     }).setOnCompleteParam(cube);
 
-                    if (isCheckingFrom)
+                    if(isCheckingFrom)
                         descr.setFrom(-5f);
                 }
             }
@@ -276,7 +272,6 @@ namespace DentedPixel.LTExamples
             LTDescr[] descrs = LeanTween.descriptions(cubeCancelA);
             LeanTest.expect(descrs.Length == 1, "SPECIFIC TWEEN DID CANCEL");
 
-
             // check descr
             //          LTDescr descr2 = LeanTween.descr( descrId );
             //          LeanTest.expect(descr2 == null,"DESCRIPTION STARTS AS NULL");
@@ -291,7 +286,7 @@ namespace DentedPixel.LTExamples
             return cube;
         }
 
-        IEnumerator timeBasedTesting()
+        private IEnumerator timeBasedTesting()
         {
             yield return new WaitForEndOfFrame();
 
@@ -356,7 +351,7 @@ namespace DentedPixel.LTExamples
             Vector3 failPoint = Vector3.zero;
             LeanTween.move(cubeBounds, new Vector3(10, 10, 10), 0.1f).setOnUpdate((float val) => {
                 //Debug.LogWarning("cubeBounds x:"+cubeBounds.transform.position.x + " y:"+ cubeBounds.transform.position.y+" z:"+cubeBounds.transform.position.z);
-                if (cubeBounds.transform.position.x < 0f || cubeBounds.transform.position.x > 10f || cubeBounds.transform.position.y < 0f || cubeBounds.transform.position.y > 10f || cubeBounds.transform.position.z < 0f || cubeBounds.transform.position.z > 10f)
+                if(cubeBounds.transform.position.x < 0f || cubeBounds.transform.position.x > 10f || cubeBounds.transform.position.y < 0f || cubeBounds.transform.position.y > 10f || cubeBounds.transform.position.z < 0f || cubeBounds.transform.position.z > 10f)
                 {
                     didPassBounds = false;
                     failPoint = cubeBounds.transform.position;
@@ -378,7 +373,7 @@ namespace DentedPixel.LTExamples
             groupGOs = new GameObject[groupTweens.Length];
             groupTweensCnt = 0;
             int descriptionMatchCount = 0;
-            for (int i = 0; i < groupTweens.Length; i++)
+            for(int i = 0; i < groupTweens.Length; i++)
             {
                 GameObject cube = cubeNamed("c" + i);
                 cube.transform.position = new Vector3(0, 0, i * 3);
@@ -392,14 +387,14 @@ namespace DentedPixel.LTExamples
             int setOnStartNum = 0;
             int setPosNum = 0;
             bool setPosOnUpdate = true;
-            for (int i = 0; i < groupTweens.Length; i++)
+            for(int i = 0; i < groupTweens.Length; i++)
             {
                 Vector3 finalPos = transform.position + Vector3.one * 3f;
                 Dictionary<string, object> finalDict = new Dictionary<string, object> { { "final", finalPos }, { "go", groupGOs[i] } };
                 groupTweens[i] = LeanTween.move(groupGOs[i], finalPos, 3f).setOnStart(() => {
                     setOnStartNum++;
                 }).setOnUpdate((Vector3 newPosition) => {
-                    if (transform.position.z > newPosition.z)
+                    if(transform.position.z > newPosition.z)
                     {
                         setPosOnUpdate = false;
                     }
@@ -410,13 +405,13 @@ namespace DentedPixel.LTExamples
                     Dictionary<string, object> finalDictRetr = param as Dictionary<string, object>;
                     Vector3 neededPos = (Vector3)finalDictRetr["final"];
                     GameObject tweenedGo = finalDictRetr["go"] as GameObject;
-                    if (neededPos.ToString() == tweenedGo.transform.position.ToString())
+                    if(neededPos.ToString() == tweenedGo.transform.position.ToString())
                         setPosNum++;
                     else
                     {
                         //                      Debug.Log("neededPos:"+neededPos+" tweenedGo.transform.position:"+tweenedGo.transform.position);
                     }
-                    if (hasGroupTweensCheckStarted == false)
+                    if(hasGroupTweensCheckStarted == false)
                     {
                         hasGroupTweensCheckStarted = true;
                         LeanTween.delayedCall(gameObject, 0.1f, () => {
@@ -429,11 +424,11 @@ namespace DentedPixel.LTExamples
                     groupTweensCnt++;
                 });
 
-                if (LeanTween.description(groupTweens[i].id).trans == groupTweens[i].trans)
+                if(LeanTween.description(groupTweens[i].id).trans == groupTweens[i].trans)
                     descriptionMatchCount++;
             }
 
-            while (LeanTween.tweensRunning < groupTweens.Length)
+            while(LeanTween.tweensRunning < groupTweens.Length)
                 yield return null;
 
             LeanTest.expect(descriptionMatchCount == groupTweens.Length, "GROUP IDS MATCH");
@@ -459,13 +454,13 @@ namespace DentedPixel.LTExamples
             LeanTween.cancel(cube2);
 
             int tweenCount = 0;
-            for (int i = 0; i < groupTweens.Length; i++)
+            for(int i = 0; i < groupTweens.Length; i++)
             {
-                if (LeanTween.isTweening(groupGOs[i]))
+                if(LeanTween.isTweening(groupGOs[i]))
                     tweenCount++;
-                if (i % 3 == 0)
+                if(i % 3 == 0)
                     LeanTween.pause(groupGOs[i]);
-                else if (i % 3 == 1)
+                else if(i % 3 == 1)
                     groupTweens[i].pause();
                 else
                     LeanTween.pause(groupTweens[i].id);
@@ -475,16 +470,16 @@ namespace DentedPixel.LTExamples
             yield return new WaitForEndOfFrame();
 
             tweenCount = 0;
-            for (int i = 0; i < groupTweens.Length; i++)
+            for(int i = 0; i < groupTweens.Length; i++)
             {
-                if (i % 3 == 0)
+                if(i % 3 == 0)
                     LeanTween.resume(groupGOs[i]);
-                else if (i % 3 == 1)
+                else if(i % 3 == 1)
                     groupTweens[i].resume();
                 else
                     LeanTween.resume(groupTweens[i].id);
 
-                if (i % 2 == 0 ? LeanTween.isTweening(groupTweens[i].id) : LeanTween.isTweening(groupGOs[i]))
+                if(i % 2 == 0 ? LeanTween.isTweening(groupTweens[i].id) : LeanTween.isTweening(groupGOs[i]))
                     tweenCount++;
             }
             LeanTest.expect(tweenCount == groupTweens.Length, "GROUP RESUME");
@@ -493,7 +488,6 @@ namespace DentedPixel.LTExamples
             LeanTest.expect(LeanTween.isTweening(cube2) == false, "CANCEL TWEEN LEANTWEEN");
 
             LeanTest.expect(pauseCount == 0, "ON UPDATE NOT CALLED DURING PAUSE", "expect pause count of 0, but got " + pauseCount);
-
 
             yield return new WaitForEndOfFrame();
             Time.timeScale = 0.25f;
@@ -524,9 +518,9 @@ namespace DentedPixel.LTExamples
 
             int ltCount = 0;
             GameObject[] allGos = FindObjectsOfType(typeof(GameObject)) as GameObject[];
-            foreach (GameObject go in allGos)
+            foreach(GameObject go in allGos)
             {
-                if (go.name == "~LeanTween")
+                if(go.name == "~LeanTween")
                     ltCount++;
             }
             LeanTest.expect(ltCount == 1, "RESET CORRECTLY CLEANS UP");
@@ -534,7 +528,7 @@ namespace DentedPixel.LTExamples
             StartCoroutine(lotsOfCancels());
         }
 
-        IEnumerator lotsOfCancels()
+        private IEnumerator lotsOfCancels()
         {
             yield return new WaitForEndOfFrame();
 
@@ -543,7 +537,7 @@ namespace DentedPixel.LTExamples
 
             int[] tweensA = new int[cubeCount];
             GameObject[] aGOs = new GameObject[cubeCount];
-            for (int i = 0; i < aGOs.Length; i++)
+            for(int i = 0; i < aGOs.Length; i++)
             {
                 GameObject cube = Instantiate(boxNoCollider) as GameObject;
                 cube.transform.position = new Vector3(0, 0, i * 2f);
@@ -557,7 +551,7 @@ namespace DentedPixel.LTExamples
 
             int[] tweensB = new int[cubeCount];
             GameObject[] bGOs = new GameObject[cubeCount];
-            for (int i = 0; i < bGOs.Length; i++)
+            for(int i = 0; i < bGOs.Length; i++)
             {
                 GameObject cube = Instantiate(boxNoCollider) as GameObject;
                 cube.transform.position = new Vector3(0, 0, i * 2f);
@@ -566,7 +560,7 @@ namespace DentedPixel.LTExamples
                 tweensB[i] = LeanTween.move(cube, cube.transform.position + new Vector3(10f, 0, 0), 2f).id;
             }
 
-            for (int i = 0; i < aGOs.Length; i++)
+            for(int i = 0; i < aGOs.Length; i++)
             {
                 LeanTween.cancel(aGOs[i]);
                 GameObject cube = aGOs[i];
@@ -575,14 +569,14 @@ namespace DentedPixel.LTExamples
 
             yield return new WaitForSeconds(0.5f);
 
-            for (int i = 0; i < aGOs.Length; i++)
+            for(int i = 0; i < aGOs.Length; i++)
             {
                 LeanTween.cancel(aGOs[i]);
                 GameObject cube = aGOs[i];
                 tweensA[i] = LeanTween.move(cube, new Vector3(0, 0, i * 2f) + new Vector3(10f, 0, 0), 2f).id;
             }
 
-            for (int i = 0; i < bGOs.Length; i++)
+            for(int i = 0; i < bGOs.Length; i++)
             {
                 LeanTween.cancel(bGOs[i]);
                 GameObject cube = bGOs[i];
@@ -592,15 +586,15 @@ namespace DentedPixel.LTExamples
             yield return new WaitForSeconds(2.1f);
 
             bool inFinalPlace = true;
-            for (int i = 0; i < aGOs.Length; i++)
+            for(int i = 0; i < aGOs.Length; i++)
             {
-                if (Vector3.Distance(aGOs[i].transform.position, new Vector3(0, 0, i * 2f) + new Vector3(10f, 0, 0)) > 0.1f)
+                if(Vector3.Distance(aGOs[i].transform.position, new Vector3(0, 0, i * 2f) + new Vector3(10f, 0, 0)) > 0.1f)
                     inFinalPlace = false;
             }
 
-            for (int i = 0; i < bGOs.Length; i++)
+            for(int i = 0; i < bGOs.Length; i++)
             {
-                if (Vector3.Distance(bGOs[i].transform.position, new Vector3(0, 0, i * 2f)) > 0.1f)
+                if(Vector3.Distance(bGOs[i].transform.position, new Vector3(0, 0, i * 2f)) > 0.1f)
                     inFinalPlace = false;
             }
 
@@ -613,7 +607,7 @@ namespace DentedPixel.LTExamples
             StartCoroutine(pauseTimeNow());
         }
 
-        IEnumerator pauseTimeNow()
+        private IEnumerator pauseTimeNow()
         {
             yield return new WaitForSeconds(0.5f);
             Time.timeScale = 0;
@@ -627,30 +621,28 @@ namespace DentedPixel.LTExamples
             }).setUseEstimatedTime(true);
         }
 
-        void rotateRepeatFinished()
+        private void rotateRepeatFinished()
         {
-            if (Mathf.Abs(cube3.transform.eulerAngles.z) < 0.0001f)
+            if(Mathf.Abs(cube3.transform.eulerAngles.z) < 0.0001f)
                 rotateRepeatAngle++;
             rotateRepeat++;
         }
 
-        void rotateRepeatAllFinished()
+        private void rotateRepeatAllFinished()
         {
             LeanTest.expect(rotateRepeatAngle == 3, "ROTATE AROUND MULTIPLE", "expected 3 times received " + rotateRepeatAngle + " times");
             LeanTest.expect(rotateRepeat == 3, "ROTATE REPEAT", "expected 3 times received " + rotateRepeat + " times");
             LeanTest.expect(cube3 == null, "DESTROY ON COMPLETE", "cube3:" + cube3);
         }
 
-        void eventGameObjectCalled(LTEvent e)
+        private void eventGameObjectCalled(LTEvent e)
         {
             eventGameObjectWasCalled = true;
         }
 
-        void eventGeneralCalled(LTEvent e)
+        private void eventGeneralCalled(LTEvent e)
         {
             eventGeneralWasCalled = true;
         }
-
     }
-
 }

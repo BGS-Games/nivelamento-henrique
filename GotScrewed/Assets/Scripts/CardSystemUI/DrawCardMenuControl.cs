@@ -1,7 +1,5 @@
 using CardSystem;
-using CardSystemUI;
 using CommonUse;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -13,15 +11,18 @@ namespace CardSystemUI
     {
         [Header("DrawCardsPanels")]
         public GameObject mainPanel;
+
         public GameObject deckPanel;
         public GameObject drawnCardsPanel;
 
         [Header("Counters")]
         public GameObject deckCounter;
+
         public GameObject drawnCardsCounter;
 
         [Header("OtherObjects")]
         public GameObject cardPrefab;
+
         public Sprite deckBackCardSprite;
 
         private RegularDeck currentDeck;

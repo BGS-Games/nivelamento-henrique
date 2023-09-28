@@ -1,32 +1,23 @@
-using CardSystemUI;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using CardSystem;
 using CommonUse;
-using System;
-using System.IO;
+using UnityEngine;
 using UnityFoundation.Code;
-using TMPro;
 
 namespace CardSystemUI
-{    
+{
     public class GameControl : Singleton<GameControl>
-    {     
-        public GameObject menuMainPanel;     
+    {
+        public GameObject menuMainPanel;
 
         public void StartGame()
-        { 
-            SetMenus();            
+        {
+            SetMenus();
         }
 
         private void SetMenus()
         {
             GeneralMethods.DeactivateMenuAnimateY(menuMainPanel, 1100);
-            
-            CallActionMenu();
 
+            CallActionMenu();
         }
 
         private void CallActionMenu()
@@ -38,7 +29,7 @@ namespace CardSystemUI
             else
             {
                 DrawCardMenuControl.Instance.InitializeMenu();
-            }                     
+            }
         }
     }
 }

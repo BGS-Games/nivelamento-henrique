@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using CardSystem;
 using CommonUse;
+using UnityEngine;
 
 namespace CardSystemUI
 {
-    public static class DealerUI 
+    public static class DealerUI
     {
-     
         public static void InstantiateAllCardsFromDeck(GameObject preFab, GameObject panel, IDeck deck)
         {
             GeneralMethods.CleanPanel(panel);
@@ -30,8 +27,6 @@ namespace CardSystemUI
             {
                 newCard.GetComponent<CardData>().UpdateFaceSide();
             }
-
         }
     }
 }
-

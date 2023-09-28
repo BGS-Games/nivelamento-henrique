@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace CardSystem
 {
@@ -15,7 +13,5 @@ namespace CardSystem
         public void ShuffleCards();
 
         public List<ICard> DrawCards(int x);
-
-        
     }
 }
