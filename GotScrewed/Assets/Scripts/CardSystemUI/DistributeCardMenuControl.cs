@@ -43,6 +43,10 @@ namespace CardSystemUI
             
             DealerUI.InstantiateAllCardsFromDeck(cardPrefab, deckPanel, currentDeck);
 
+            //DealCards() to handsArray
+            //plota as cartas do jogador principal
+            //Modifica o CreatePlayersHandPanel para plotar as cartas dos outros jogadores
+
             CreatePlayersHandPanel();
 
             UpdateDeckCardCounter();
