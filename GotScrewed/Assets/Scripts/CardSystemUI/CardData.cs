@@ -37,6 +37,10 @@ namespace CardSystemUI
             {
                 gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>(ImageAdress);
             }
+            else
+            {
+                gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Images/costasAzul");
+            }
         }
 
         public void PrintCard()
